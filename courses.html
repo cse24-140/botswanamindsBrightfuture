@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - Botswana Minds, Bright Future | IGCSE & BGCSE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0a0e1a 0%, #0f1622 50%, #1a0f2e 100%); color: #ffffff; min-height: 100vh; }
+        .navbar { position: fixed; top: 0; left: 0; right: 0; background: rgba(10, 14, 26, 0.95); backdrop-filter: blur(15px); padding: 1rem 5%; z-index: 1000; border-bottom: 1px solid rgba(0, 229, 255, 0.2); }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .logo { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #00e5ff, #0077ff); border-radius: 50%; box-shadow: 0 0 15px rgba(0, 229, 255, 0.4); display: flex; align-items: center; justify-content: center; }
+        .logo-icon i { font-size: 1.5rem; color: #fff; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .logo:hover .logo-icon i { animation: spin 2s linear infinite; }
+        .logo h1 { font-size: 1.1rem; font-weight: 700; background: linear-gradient(135deg, #00e5ff, #0077ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .logo p { font-size: 0.7rem; color: #ffffff; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: #b8c7e7; text-decoration: none; transition: 0.3s; font-weight: 500; position: relative; }
+        .nav-links a:hover, .nav-links a.active { color: #00e5ff; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 50%; transform: translateX(-50%); background: #00e5ff; transition: width 0.3s ease; }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .curriculum-switcher { display: flex; gap: 0.5rem; background: rgba(18, 25, 45, 0.8); border-radius: 40px; padding: 0.2rem; border: 1px solid rgba(0, 229, 255, 0.3); }
+        .curriculum-btn { padding: 0.4rem 1.2rem; border-radius: 40px; border: none; background: transparent; color: #b8c7e7; font-weight: 600; cursor: pointer; transition: 0.3s; font-size: 0.8rem; }
+        .curriculum-btn.active { background: linear-gradient(135deg, #00e5ff, #0077ff); color: white; }
+        .user-badge { display: flex; align-items: center; gap: 0.8rem; background: rgba(0, 229, 255, 0.1); padding: 0.4rem 1rem; border-radius: 40px; cursor: pointer; }
+        .user-badge i { color: #00e5ff; }
+        .main-content { padding-top: 90px; max-width: 1400px; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; padding-bottom: 3rem; }
+        .page-header { text-align: center; margin-bottom: 3rem; }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .page-header p { color: #a0b4d0; max-width: 600px; margin: 0 auto; }
+        .curriculum-badge { display: inline-block; background: rgba(0, 229, 255, 0.15); padding: 0.3rem 1rem; border-radius: 30px; font-size: 0.8rem; color: #00e5ff; margin-bottom: 1rem; }
+        .courses-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+        .course-card { background: rgba(18, 25, 45, 0.7); backdrop-filter: blur(10px); border-radius: 20px; padding: 1.5rem; border: 1px solid rgba(0, 229, 255, 0.15); transition: 0.3s; }
+        .course-card:hover { transform: translateY(-5px); border-color: #00e5ff; }
+        .course-icon { width: 60px; height: 60px; background: linear-gradient(135deg, #00e5ff20, #0077ff20); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+        .course-icon i { font-size: 1.8rem; color: #00e5ff; }
+        .course-meta { display: flex; gap: 1rem; margin: 1rem 0; font-size: 0.8rem; color: #6c86a3; }
+        .enroll-btn { background: rgba(0, 229, 255, 0.1); border: 1px solid rgba(0, 229, 255, 0.3); padding: 0.6rem 1.2rem; border-radius: 30px; color: #00e5ff; cursor: pointer; display: inline-block; transition: 0.3s; font-size: 0.85rem; }
+        .enroll-btn:hover { background: linear-gradient(135deg, #00e5ff, #0077ff); color: white; }
+        .categories { display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap; }
+        .category-btn { background: rgba(18, 25, 45, 0.8); border: 1px solid rgba(0, 229, 255, 0.2); padding: 0.6rem 1.5rem; border-radius: 40px; color: #b8c7e7; cursor: pointer; transition: 0.3s; }
+        .category-btn.active, .category-btn:hover { background: linear-gradient(135deg, #00e5ff, #0077ff); color: white; }
+        
+        /* Course Detail Styles */
+        .course-detail { display: none; }
+        .course-detail.active { display: block; }
+        .course-detail-header { background: rgba(18, 25, 45, 0.8); border-radius: 20px; padding: 2rem; margin-bottom: 2rem; border: 1px solid rgba(0, 229, 255, 0.2); }
+        .course-detail-header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+        .course-detail-header p { color: #a0b4d0; margin-bottom: 1rem; }
+        .back-btn { background: rgba(0, 229, 255, 0.1); border: 1px solid rgba(0, 229, 255, 0.3); padding: 0.5rem 1.2rem; border-radius: 25px; color: #00e5ff; cursor: pointer; font-size: 0.85rem; transition: 0.3s; margin-bottom: 1.5rem; }
+        .back-btn:hover { background: linear-gradient(135deg, #00e5ff, #0077ff); color: white; }
+        
+        /* Objectives */
+        .objectives { background: rgba(18, 25, 45, 0.6); border-radius: 15px; padding: 1.5rem; margin-bottom: 2rem; border: 1px solid rgba(0, 229, 255, 0.15); }
+        .objectives h3 { color: #00e5ff; margin-bottom: 1rem; }
+        .objectives ul { list-style: none; }
+        .objectives li { padding: 0.4rem 0; color: #a0b4d0; }
+        .objectives li:before { content: "✓ "; color: #00e5ff; font-weight: bold; margin-right: 0.5rem; }
+        
+        /* Topics Section */
+        .topics-container { display: grid; gap: 1.5rem; }
+        .topic-card { background: rgba(18, 25, 45, 0.6); border-radius: 15px; border: 1px solid rgba(0, 229, 255, 0.15); overflow: hidden; }
+        .topic-header { padding: 1.2rem; background: rgba(0, 229, 255, 0.05); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: 0.3s; }
+        .topic-header:hover { background: rgba(0, 229, 255, 0.1); }
+        .topic-header h4 { color: #00e5ff; }
+        .topic-content { padding: 1.5rem; display: none; }
+        .topic-content.show { display: block; }
+        
+        /* Notes and Questions */
+        .topic-notes { margin-bottom: 1.5rem; }
+        .topic-notes h5 { color: #00e5ff; margin-bottom: 0.8rem; font-size: 0.95rem; }
+        .notes-text { color: #a0b4d0; line-height: 1.6; margin-bottom: 1rem; }
+        .notes-text strong { color: #b8c7e7; }
+        
+        .topic-questions { margin-top: 1rem; }
+        .topic-questions h5 { color: #7b2ff7; margin-bottom: 0.8rem; font-size: 0.95rem; }
+        .question-item { background: rgba(0, 0, 0, 0.3); border-left: 3px solid #7b2ff7; padding: 1rem; margin-bottom: 0.8rem; border-radius: 8px; }
+        .question-text { color: #b8c7e7; margin-bottom: 0.5rem; font-weight: 500; }
+        .answer-btn { background: rgba(123, 47, 247, 0.2); border: 1px solid rgba(123, 47, 247, 0.3); color: #b794f6; padding: 0.3rem 0.8rem; border-radius: 15px; cursor: pointer; font-size: 0.75rem; transition: 0.3s; }
+        .answer-btn:hover { background: rgba(123, 47, 247, 0.4); }
+        .answer-text { color: #a0b4d0; margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid rgba(123, 47, 247, 0.2); display: none; }
+        .answer-text.show { display: block; }
+        
+        /* Quiz Overlay System */
+        .quiz-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #0a0e1a;
+            z-index: 2000;
+            display: none;
+            flex-direction: column;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+        }
+        .timer-box {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ff4655;
+            background: rgba(255, 70, 85, 0.1);
+            padding: 0.5rem 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 70, 85, 0.3);
+        }
+        .quiz-question-card {
+            background: rgba(18, 25, 45, 0.8);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            margin-bottom: 1.5rem;
+        }
+        .answer-input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 12px;
+            color: white;
+            margin-top: 1rem;
+        }
+        .feedback-correct { border: 2px solid #00e5ff !important; background: rgba(0, 229, 255, 0.1) !important; }
+        .feedback-wrong { border: 2px solid #ff4655 !important; background: rgba(255, 70, 85, 0.1) !important; }
+        .correct-ans-display { color: #00e5ff; font-weight: 600; margin-top: 0.5rem; }
+        .score-card { text-align: center; padding: 3rem; background: rgba(18, 25, 45, 0.9); border-radius: 24px; }
+        .score-val { font-size: 4rem; color: #00e5ff; font-weight: 800; }
+
+        .footer { text-align: center; padding: 2rem; color: #6c86a3; font-size: 0.8rem; border-top: 1px solid rgba(0, 229, 255, 0.1); margin-top: 2rem; }
+        .toast { position: fixed; bottom: 30px; right: 30px; background: #1a2a3a; padding: 1rem 1.5rem; border-radius: 12px; border-left: 4px solid #00e5ff; z-index: 1000; animation: slideIn 0.3s ease; }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @media (max-width: 900px) { .nav-links { display: none; } .courses-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-lightbulb"></i></div>
+                <div><h1>Botswana Minds, Bright Future</h1><p>Smart Learning for BGCSE & IGCSE</p></div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="courses.html" class="active">Courses</a>
+                <a href="resources.html">Resources</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="curriculum-switcher">
+                <button class="curriculum-btn" data-curriculum="igcse" onclick="setCurriculum('igcse')">IGCSE</button>
+                <button class="curriculum-btn" data-curriculum="bgcse" onclick="setCurriculum('bgcse')">BGCSE</button>
+            </div>
+            <div class="user-badge" onclick="showAuthModal()">
+                <i class="fas fa-user-circle"></i> <span id="userNameDisplay">Account</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content" id="mainContent"></div>
+
+    <!-- Testing Engine Overlay -->
+    <div class="quiz-overlay" id="quizOverlay">
+        <div id="quizContent"></div>
+    </div>
+
+    <div class="footer"><p>© 2024 Botswana Minds, Bright Future. Empowering IGCSE & BGCSE Students Worldwide.</p></div>
+
+    <script>
+        let currentCurriculum = localStorage.getItem('selectedCurriculum') || 'igcse';
+        let currentUser = null;
+        let currentCategory = 'all';
+        let selectedCourse = null;
+        let quizTimer = null;
+        let timeLeft = 0;
+
+        // Auth functions
+        function getUsers() {
+            const users1 = JSON.parse(localStorage.getItem('botswanaminds_users') || '[]');
+            const users2 = JSON.parse(localStorage.getItem('solace_users') || '[]');
+            return users1.length >= users2.length ? users1 : users2;
+        }
+
+        function showAuthModal() {
+            const user = localStorage.getItem('botswanaminds_currentUser') || localStorage.getItem('solace_currentUser');
+            if (user) { 
+                if (confirm('Logout?')) {
+                    localStorage.removeItem('botswanaminds_currentUser');
+                    localStorage.removeItem('solace_currentUser');
+                    document.getElementById('userNameDisplay').innerText = 'Account'; 
+                    showToast('Logged out');
+                }
+                return;
+            }
+            const action = prompt('Enter 1 to Login, 2 to Create Account');
+            if (action === '1') {
+                const username = prompt('Username:');
+                const password = prompt('Password:');
+                const users = getUsers();
+                const user = users.find(u => u.username === username && u.password === password);
+                if (user) {
+                    const session = { username: user.username, fullname: user.fullname, role: user.role || 'student' };
+                    localStorage.setItem('botswanaminds_currentUser', JSON.stringify(session));
+                    localStorage.setItem('solace_currentUser', JSON.stringify(session));
+                    document.getElementById('userNameDisplay').innerText = user.fullname || user.username;
+                    showToast(`Welcome back!`);
+                } else showToast('Invalid credentials', true);
+            } else if (action === '2') {
+                const fullname = prompt('Full Name:');
+                const username = prompt('Username:');
+                const email = prompt('Email:');
+                const password = prompt('Password (min 6 chars):');
+                const roleChoice = prompt('Register as: 1 for Student, 2 for Tutor');
+                const role = roleChoice === '2' ? 'tutor' : 'student';
+                
+                if (fullname && username && email && password && password.length >= 6) {
+                    const users = getUsers();
+                    if (users.some(u => u.username === username)) { showToast('Username taken', true); return; }
+                    const newUser = { fullname, username, email, password, role };
+                    users.push(newUser);
+                    localStorage.setItem('solace_users', JSON.stringify(users));
+                    localStorage.setItem('botswanaminds_users', JSON.stringify(users));
+                    localStorage.setItem('solace_currentUser', JSON.stringify({ username, fullname, role }));
+                    localStorage.setItem('botswanaminds_currentUser', JSON.stringify({ username, fullname, role }));
+                    document.getElementById('userNameDisplay').innerText = fullname;
+                    showToast(`Welcome ${fullname}! Registered as ${role}.`);
+                } else showToast('Invalid input', true);
+            }
+        }
+
+        const coursesData = {
+            igcse: {
+                mathematics: {
+                    name: "Mathematics (0580)",
+                    code: "0580",
+                    icon: "fa-calculator",
+                    description: "Revision notes and categorized topic questions for the IGCSE Mathematics (0580) syllabus.",
+                    objectives: [
+                        "Study Number, Algebra, Geometry, and Probability topics using SME frameworks",
+                        "Learn step-by-step methods and exam techniques for high-mark questions",
+                        "Practice with exam-style topic questions categorized by difficulty",
+                        "Review essential mark schemes and common examiner comments"
+                    ],
+                    topics: [
+                        {
+                            title: "1. Number - Revision Notes",
+                            notes: "<h5>1.1 Types of Number</h5><ul><li>**Integers:** Whole numbers.</li><li>**Rational Numbers:** Written as p/q.</li><li>**Irrational Numbers:** √2, π.</li></ul><h5>1.2 HCF & LCM</h5><p>HCF is the product of common prime factors with lowest powers. LCM is the product of all prime factors with highest powers.</p>",
+                            questions: [
+                                { q: "Find the HCF of 48 and 72.", a: "48=2⁴×3, 72=2³×3². HCF=2³×3=24." },
+                                { q: "Write 0.0056 in standard form.", a: "5.6 × 10⁻³" }
+                            ]
+                        },
+                        {
+                            title: "2. Algebra - Topic Questions",
+                            notes: "<h5>2.1 Solving Linear Equations</h5><p>Isolate the variable by performing inverse operations to both sides.</p><h5>2.2 Expanding Brackets</h5><p>Use the distributive law (multiply the term outside by everything inside).</p>",
+                            questions: [
+                                { q: "Solve 5x + 7 = 22", a: "5x = 15, so x = 3." },
+                                { q: "Factorise x² - 16 completely.", a: "(x + 4)(x - 4)" }
+                            ]
+                        }
+                    ]
+                },
+                physics: {
+                    name: "Physics (0625)",
+                    code: "0625",
+                    icon: "fa-atom",
+                    description: "IGCSE Physics (0625) structured revision notes and categorization of topic questions.",
+                    objectives: [
+                        "Review General Physics, Thermal Physics, and properties of Waves",
+                        "Master Electricity, Magnetism, and Atomic Physics sections using SME guides",
+                        "Understand standard formulas and how to rearrange them for marks",
+                        "Analyze experimental techniques for Paper 6 (ATP)"
+                    ],
+                    topics: [
+                        {
+                            title: "Topic 1: Motion, Forces & Energy - Notes",
+                            notes: "<h5>1.1 Speed, Velocity & Acceleration</h5><ul><li>**Speed** = Distance / Time (scalar)</li><li>**Velocity** = Displacement / Time (vector)</li></ul><h5>1.2 Density</h5><p>Density = Mass / Volume. Standard unit is kg/m³.</p>",
+                            questions: [
+                                { q: "A car travels 200m in 10s. Calculate speed.", a: "Speed = 200/10 = 20 m/s." },
+                                { q: "State Hooke's Law.", a: "Force is proportional to extension (F = kx) until the limit of proportionality." }
+                            ]
+                        }
+                    ]
+                },
+                chemistry: {
+                    name: "Chemistry (0620)",
+                    code: "0620",
+                    icon: "fa-flask",
+                    description: "Complete IGCSE Chemistry (0620) revision notes and categorized topic questions.",
+                    objectives: [
+                        "Review atomic structure, bonding, and stoichiometry topics",
+                        "Learn chemical energetics, kinetics, and reversible reactions based on SME guides",
+                        "Master acids, bases, salts, and the Periodic Table sections",
+                        "Explore organic chemistry and experimental procedures"
+                    ],
+                    topics: [
+                        {
+                            title: "Topic 1: States of Matter - Revision Notes",
+                            notes: "<h5>1.1 Kinetic Particle Theory</h5><ul><li>**Solids:** Fixed volume, vibrating particles.</li><li>**Gases:** No fixed volume, rapid random motion.</li></ul><h5>1.2 Diffusion</h5><p>Movement of particles from high to low concentration. Lighter molecules diffuse faster.</p>",
+                            questions: [
+                                { q: "State the movement of particles in a solid.", a: "Vibrating about fixed positions." },
+                                { q: "Which gas diffuses faster: NH₃ or HCl?", a: "NH₃ (smaller relative molecular mass)." }
+                            ]
+                        }
+                    ]
+                },
+                biology: {
+                    name: "Biology (0610)",
+                    code: "0610",
+                    icon: "fa-dna",
+                    description: "Essential IGCSE Biology (0610) revision notes and categorized topic-by-topic questions.",
+                    objectives: [
+                        "Learn characteristics of organisms using the MRS GREN framework",
+                        "Master cell biology and biological molecules following SME guides",
+                        "Study plant and human physiology in detail",
+                        "Explore inheritance, variation, and environmental topics"
+                    ],
+                    topics: [
+                        {
+                            title: "Topic 1: Characteristics of Organisms - Notes",
+                            notes: "<h5>1.1 MRS GREN</h5><p>Movement, Respiration, Sensitivity, Growth, Reproduction, Excretion, Nutrition.</p><h5>1.2 Cell Organelles</h5><ul><li>**Nucleus:** Genetic material.</li><li>**Mitochondria:** Respiration.</li></ul>",
+                            questions: [
+                                { q: "What does MRS GREN stand for?", a: "Movement, Respiration, Sensitivity, Growth, Reproduction, Excretion, Nutrition." },
+                                { q: "Identify cell wall function.", a: "Provides support and protection to plant cells." }
+                            ]
+                        }
+                    ]
+                },
+                english: {
+                    name: "English (0500)",
+                    code: "0500",
+                    icon: "fa-book",
+                    description: "IGCSE First Language English (0500) structured revision guides and model responses.",
+                    objectives: [
+                        "Analyze writer's effects and meanings following the SME guidelines",
+                        "Master summary writing and structured response tasks",
+                        "Improve creative and argumentative writing techniques",
+                        "Master Paper 1 (Reading) and Paper 2 (Writing) strategies"
+                    ],
+                    topics: [
+                        {
+                            title: "Paper 1: Reading - Revision Notes",
+                            notes: "<h5>1.1 Reading Analysis</h5><p>**Explicit Meaning:** Stated directly. **Implicit Meaning:** Inferred from the text.</p><h5>1.2 Summary Writing</h5><p>Identify relevant points and write them in your own words while maintaining the original tone.</p>",
+                            questions: [
+                                { q: "What is an implicit meaning?", a: "Information hinted at but not directly stated." },
+                                { q: "Define writer's effect analysis.", a: "Explaining how specific words create impact on the reader." }
+                            ]
+                        }
+                    ]
+                }
+            },
+            bgcse: {
+                mathematics: {
+                    name: "Mathematics (BGCSE)",
+                    code: "BGCSE",
+                    icon: "fa-calculator",
+                    description: "BGCSE Mathematics covering all curricula objectives",
+                    objectives: [
+                        "Master number systems and mathematical operations",
+                        "Develop algebraic reasoning and problem-solving",
+                        "Apply geometric and trigonometric principles",
+                        "Analyze statistical data and probability"
+                    ],
+                    topics: [
+                        {
+                            title: "Number Theory & Operations",
+                            notes: "Integers, rational numbers, real numbers, divisibility, prime factorization, GCD, LCM, and modular arithmetic.",
+                            questions: [
+                                { q: "Prime factors of 60", a: "2² × 3 × 5" },
+                                { q: "LCM of 12 and 18", a: "36" },
+                                { q: "Convert 3/8 to decimal", a: "0.375" }
+                            ]
+                        },
+                        {
+                            title: "Algebra & Linear Systems",
+                            notes: "Algebraic expressions, linear and quadratic equations, systems of equations, polynomials, and function operations.",
+                            questions: [
+                                { q: "Solve system: x+y=5, x-y=1", a: "x=3, y=2" },
+                                { q: "Graph of y = 2x + 3 has slope __", a: "2" },
+                                { q: "Degree of polynomial 3x⁴ + 2x² + 1", a: "4" }
+                            ]
+                        },
+                        {
+                            title: "Geometry & Trigonometry",
+                            notes: "Coordinate geometry, transformations, properties of shapes, trigonometric functions, and triangle solving.",
+                            questions: [
+                                { q: "Distance between points (0,0) and (3,4)", a: "5" },
+                                { q: "Angle in semicircle is always __", a: "90°" },
+                                { q: "sin²θ + cos²θ = ?", a: "1" }
+                            ]
+                        },
+                        {
+                            title: "Probability & Statistics",
+                            notes: "Data collection and analysis, probability theory, distributions, sampling, and hypothesis testing.",
+                            questions: [
+                                { q: "Range of dataset: 2, 5, 8, 11", a: "9" },
+                                { q: "Probability of impossible event", a: "0" },
+                                { q: "Mode of dataset: 1, 2, 2, 3, 4", a: "2" }
+                            ]
+                        }
+                    ]
+                },
+                physics: {
+                    name: "Physics (BGCSE)",
+                    code: "BGCSE",
+                    icon: "fa-atom",
+                    description: "BGCSE Physics covering mechanics, electricity, and waves",
+                    objectives: [
+                        "Understand forces and motion",
+                        "Analyze energy transformations",
+                        "Study electricity and magnetism",
+                        "Investigate wave phenomena"
+                    ],
+                    topics: [
+                        {
+                            title: "Motion & Energy",
+                            notes: "Kinematics, forces, work, energy, momentum, power, and simple machines.",
+                            questions: [
+                                { q: "Object moving at 10 m/s, travels for 5s. Distance = ?", a: "50 m" },
+                                { q: "Work = Force × Distance. W=? if F=50N, D=2m", a: "100 J" },
+                                { q: "Momentum = mass × velocity. p=? if m=5kg, v=4 m/s", a: "20 kg·m/s" }
+                            ]
+                        },
+                        {
+                            title: "Electricity",
+                            notes: "Electric charge, current, voltage, circuits, Ohm's law, power, energy, and electrical safety.",
+                            questions: [
+                                { q: "Charge = Current × Time. Q=? if I=2A, t=3s", a: "6 C" },
+                                { q: "Resistors in series: total R = R₁ + R₂ + __", a: "R₃ (+ ...)" },
+                                { q: "Energy = Power × Time. E=? if P=100W, t=2s", a: "200 J" }
+                            ]
+                        },
+                        {
+                            title: "Waves & Sound",
+                            notes: "Wave characteristics, sound properties, light, reflection, refraction, and electromagnetic waves.",
+                            questions: [
+                                { q: "Frequency = 1/Period. f=? if T=0.1s", a: "10 Hz" },
+                                { q: "Law of reflection: angle of incidence = __", a: "angle of reflection" },
+                                { q: "Refractive index = speed of light in vacuum / speed in medium. n=? if c/v=1.5", a: "1.5" }
+                            ]
+                        }
+                    ]
+                },
+                chemistry: {
+                    name: "Chemistry (BGCSE)",
+                    code: "BGCSE",
+                    icon: "fa-flask",
+                    description: "BGCSE Chemistry covering matter and reactions",
+                    objectives: [
+                        "Understand matter and atomic structure",
+                        "Study chemical bonding and reactions",
+                        "Learn about acids, bases, and salts"
+                    ],
+                    topics: [
+                        {
+                            title: "Matter & Atoms",
+                            notes: "States of matter, elements, compounds, isotopes, relative atomic mass, and electron configuration.",
+                            questions: [
+                                { q: "Three states of matter", a: "Solid, liquid, gas" },
+                                { q: "Pure substance with fixed composition", a: "Compound" },
+                                { q: "Relative atomic mass of Carbon-12", a: "12" }
+                            ]
+                        },
+                        {
+                            title: "Chemical Changes",
+                            notes: "Chemical equations, types of reactions, exothermic and endothermic reactions, combustion, and oxidation.",
+                            questions: [
+                                { q: "Reaction type where substance burns in oxygen", a: "Combustion" },
+                                { q: "Reaction releasing heat is __", a: "Exothermic" },
+                                { q: "When Fe reacts with O₂, product is __", a: "Iron oxide/Fe₂O₃ or Fe₃O₄" }
+                            ]
+                        },
+                        {
+                            title: "Acids, Bases & Salts",
+                            notes: "pH scale, strong and weak acids/bases, neutralization, salt formation, and indicators.",
+                            questions: [
+                                { q: "Neutral pH value", a: "7" },
+                                { q: "Acid + Base → Salt + __", a: "Water" },
+                                { q: "pH < 7 indicates __", a: "Acidic" }
+                            ]
+                        }
+                    ]
+                },
+                biology: {
+                    name: "Biology (BGCSE)",
+                    code: "BGCSE",
+                    icon: "fa-dna",
+                    description: "BGCSE Biology covering organisms and life processes",
+                    objectives: [
+                        "Study cells and living organisms",
+                        "Understand life processes and metabolism",
+                        "Learn about genetics and evolution"
+                    ],
+                    topics: [
+                        {
+                            title: "Cells & Organisms",
+                            notes: "Cell structure, types of organisms, tissues, organs, and organ systems.",
+                            questions: [
+                                { q: "Basic unit of life", a: "Cell" },
+                                { q: "Organism with nucleus", a: "Eukaryote" },
+                                { q: "Groups of similar cells forming structure", a: "Tissue" }
+                            ]
+                        },
+                        {
+                            title: "Life Processes",
+                            notes: "Nutrition, respiration, photosynthesis, growth, reproduction, and excretion.",
+                            questions: [
+                                { q: "Process by which plants make glucose", a: "Photosynthesis" },
+                                { q: "Energy-releasing process in all cells", a: "Respiration" },
+                                { q: "Gas plants need for photosynthesis", a: "Carbon dioxide (CO₂)" }
+                            ]
+                        },
+                        {
+                            title: "Genetics & Heredity",
+                            notes: "DNA, genes, chromosomes, inheritance, and variation in organisms.",
+                            questions: [
+                                { q: "Molecule carrying genetic information", a: "DNA" },
+                                { q: "Unit of heredity", a: "Gene" },
+                                { q: "Alternative form of a gene", a: "Allele" }
+                            ]
+                        }
+                    ]
+                },
+                setswana: {
+                    name: "Setswana (BGCSE)",
+                    code: "BGCSE",
+                    icon: "fa-language",
+                    description: "Master Setswana language skills - speaking, reading, writing, and cultural understanding",
+                    objectives: [
+                        "Develop proficiency in Setswana speaking and listening",
+                        "Master reading and writing skills in Setswana",
+                        "Understand Botswana culture and traditions",
+                        "Apply grammar rules correctly in context",
+                        "Engage in meaningful conversations in Setswana"
+                    ],
+                    topics: [
+                        {
+                            title: "Setswana Greetings & Basic Phrases",
+                            notes: "Essential greetings: Dumela (Hello), Dumelang (plural), Rogana (Please), Ke a leboga (Thank you), Nnyaa (No), Ee (Yes). Formal and informal greetings. Common courtesies and polite expressions.",
+                            questions: [
+                                { q: "How do you say 'Hello' to one person in Setswana?", a: "Dumela" },
+                                { q: "How do you say 'Thank you' in Setswana?", a: "Ke a leboga" },
+                                { q: "What is the plural form of greeting 'Dumelang'?", a: "Dumelang (used for multiple people)" }
+                            ]
+                        },
+                        {
+                            title: "Setswana Grammar - Nouns & Agreement",
+                            notes: "Noun classes (bo-, mo-, ba-, di-, go-, se-, etc.), subject and object concords, verb agreement. Understanding how prefixes change meaning. Singular and plural forms.",
+                            questions: [
+                                { q: "What does 'mo' prefix indicate?", a: "Singular person (mo-sadi = woman)" },
+                                { q: "What is the plural form with 'ba' prefix?", a: "Multiple people (ba-sadi = women)" },
+                                { q: "Setswana verb infinitive form starts with __", a: "go- (e.g., go-thapa = to choose)" }
+                            ]
+                        },
+                        {
+                            title: "Setswana Verbs & Tenses",
+                            notes: "Present tense, past tense, future tense conjugations. Regular and irregular verbs. Verb stems and affixes. Action words and their modifications based on subject.",
+                            questions: [
+                                { q: "Present tense prefix for 'I' (nna)", a: "ke- (Ke a ithuta = I learn)" },
+                                { q: "Past tense marker in Setswana", a: "-ile or -go (e.g., thapile = chose)" },
+                                { q: "Future tense prefix form", a: "tla- (e.g., ke tla ithuta = I will learn)" }
+                            ]
+                        },
+                        {
+                            title: "Setswana Vocabulary - Daily Life",
+                            notes: "Vocabulary for family (lelapa), food (dijo), animals (dikopu), numbers (dinomboro), days (matshwantsho), colors (mmala), and common objects in everyday life.",
+                            questions: [
+                                { q: "How do you count from 1-3 in Setswana?", a: "nngwe, pedi, tharo" },
+                                { q: "What is 'mother' in Setswana?", a: "mma" },
+                                { q: "Say 'water' in Setswana", a: "metsi" }
+                            ]
+                        },
+                        {
+                            title: "Setswana Culture & Traditions",
+                            notes: "Understanding Botswana traditions, customs, celebrations (Sekhutlano), social values, family structure, initiation ceremonies, music, and traditional dress.",
+                            questions: [
+                                { q: "What is the national language of Botswana?", a: "Setswana" },
+                                { q: "What does 'Ubuntu' philosophy emphasize?", a: "Humanity towards others (I am because we are)" },
+                                { q: "Traditional Setswana greeting ritual involves", a: "Respect, handshake, and inquiry about family" }
+                            ]
+                        },
+                        {
+                            title: "Setswana Reading & Comprehension",
+                            notes: "Reading short texts, stories, and passages in Setswana. Understanding context, identifying main ideas, and answering comprehension questions.",
+                            questions: [
+                                { q: "Key strategy for understanding new Setswana words", a: "Look for familiar word parts and context clues" },
+                                { q: "When reading Setswana, verb prefixes tell you __", a: "Who is performing the action (subject)" },
+                                { q: "Setswana newspapers and literature help with __", a: "Reading fluency and cultural understanding" }
+                            ]
+                        },
+                        {
+                            title: "Setswana Writing & Composition",
+                            notes: "Writing simple sentences, short messages, and paragraphs in Setswana. Letter writing, formal and informal correspondence, and basic essays.",
+                            questions: [
+                                { q: "How to write 'I am a student' in Setswana?", a: "Ke moithuta (or Nna ke moithuta)" },
+                                { q: "Formal letter closing in Setswana", a: "Ka katlego (Yours sincerely)" },
+                                { q: "Subject-verb-object order is typical in Setswana sentence structure?", a: "Yes, (e.g., Nna ke a ithuta = I am learning)" }
+                            ]
+                        }
+                    ]
+                },
+                socialstudies: {
+                    name: "Social Studies (BGCSE)",
+                    code: "BGCSE",
+                    icon: "fa-globe",
+                    description: "Study society, geography, history, and civics for BGCSE",
+                    objectives: [
+                        "Understand Botswana's geography, history, and government",
+                        "Study economic systems and development",
+                        "Analyze social issues and cultural diversity",
+                        "Develop citizenship and environmental awareness"
+                    ],
+                    topics: [
+                        {
+                            title: "Geography of Botswana",
+                            notes: "Location, climate, natural resources, terrain, vegetation zones, wildlife, water resources (Okavango Delta, Kalahari), and environmental challenges.",
+                            questions: [
+                                { q: "What is the capital of Botswana?", a: "Gaborone" },
+                                { q: "Botswana's largest and most famous delta", a: "Okavango Delta" },
+                                { q: "Major vegetation zone in southern Botswana", a: "Kalahari" }
+                            ]
+                        },
+                        {
+                            title: "History & Government",
+                            notes: "Pre-colonial Botswana, colonialism, independence (1966), government structure, Constitution, democracy, and political systems.",
+                            questions: [
+                                { q: "When did Botswana gain independence?", a: "1966" },
+                                { q: "First President of Botswana", a: "Seretse Khama" },
+                                { q: "Botswana's government is a __", a: "Parliamentary democracy" }
+                            ]
+                        },
+                        {
+                            title: "Economic Systems & Development",
+                            notes: "Diamond mining, agriculture, tourism, employment, economic policies, GDP, inflation, and sustainable development.",
+                            questions: [
+                                { q: "Major source of Botswana's wealth", a: "Diamond mining" },
+                                { q: "Second largest employer in Botswana", a: "Tourism" },
+                                { q: "Importance of economic diversification", a: "Reduces dependence on single resource" }
+                            ]
+                        },
+                        {
+                            title: "Social Issues & Culture",
+                            notes: "Population diversity, ethnic groups, gender issues, education, health, poverty, inequality, and cultural heritage.",
+                            questions: [
+                                { q: "Largest ethnic group in Botswana", a: "Tswana" },
+                                { q: "Major social issue in Botswana", a: "HIV/AIDS" },
+                                { q: "Importance of cultural preservation", a: "Maintains identity and heritage" }
+                            ]
+                        },
+                        {
+                            title: "Citizenship & Rights",
+                            notes: "Human rights, constitutional rights, responsibilities as citizens, democracy, participation, and rule of law.",
+                            questions: [
+                                { q: "Fundamental human right in Botswana", a: "Freedom of speech, assembly, movement" },
+                                { q: "Age of voting in Botswana", a: "18 years old" },
+                                { q: "Constitutional court in Botswana handles __", a: "Constitutional disputes and rights issues" }
+                            ]
+                        }
+                    ]
+                },
+                religiouseducation: {
+                    name: "Religious Education (BGCSE)",
+                    code: "BGCSE",
+                    icon: "fa-om",
+                    description: "Explore major world religions, ethics, and spirituality",
+                    objectives: [
+                        "Understand major world religions and their beliefs",
+                        "Develop moral and ethical awareness",
+                        "Respect religious diversity",
+                        "Examine personal values and spirituality"
+                    ],
+                    topics: [
+                        {
+                            title: "Christianity",
+                            notes: "Jesus Christ, Bible teachings, denominations, sacraments, Christian ethics, beliefs about God, salvation, and worship practices.",
+                            questions: [
+                                { q: "Central figure in Christianity", a: "Jesus Christ" },
+                                { q: "Number of commandments given by God", a: "Ten Commandments" },
+                                { q: "Major Christian sacrament", a: "Baptism and Communion/Eucharist" }
+                            ]
+                        },
+                        {
+                            title: "Islam",
+                            notes: "Prophet Muhammad, Quran, Five Pillars, Islamic law, beliefs, prayer, fasting, and Islamic ethics.",
+                            questions: [
+                                { q: "Founder of Islam", a: "Prophet Muhammad" },
+                                { q: "Holy scripture of Islam", a: "Quran" },
+                                { q: "Direction Muslims face when praying", a: "Towards Mecca" }
+                            ]
+                        },
+                        {
+                            title: "Buddhism",
+                            notes: "Buddha, Four Noble Truths, Eightfold Path, meditation, karma, enlightenment, and Buddhist ethics.",
+                            questions: [
+                                { q: "Founder of Buddhism", a: "Siddhartha Gautama (Buddha)" },
+                                { q: "Goal of Buddhist practice", a: "Enlightenment/Nirvana" },
+                                { q: "Central concept in Buddhism", a: "Middle Way" }
+                            ]
+                        },
+                        {
+                            title: "Moral & Ethical Issues",
+                            notes: "Bioethics, social justice, environmental ethics, poverty, wealth, human rights, and contemporary moral dilemmas.",
+                            questions: [
+                                { q: "Ethics is concerned with __", a: "Right and wrong behavior" },
+                                { q: "Bioethics deals with __", a: "Moral issues in medicine and biology" },
+                                { q: "Environmental ethics emphasizes __", a: "Responsibility towards nature" }
+                            ]
+                        }
+                    ]
+                },
+                english: {
+                    name: "English (BGCSE)",
+                    code: "BGCSE",
+                    icon: "fa-book-open",
+                    description: "Master English language and literature skills for BGCSE",
+                    objectives: [
+                        "Develop proficiency in English communication",
+                        "Analyze literary texts effectively",
+                        "Master writing and composition skills",
+                        "Improve reading and oral skills"
+                    ],
+                    topics: [
+                        {
+                            title: "Grammar & Language Use",
+                            notes: "Parts of speech, sentence structure, verb tenses, subject-verb agreement, active and passive voice, punctuation, and common errors.",
+                            questions: [
+                                { q: "Parts of speech include noun, verb, adjective, and __", a: "Adverb, preposition, conjunction, pronoun" },
+                                { q: "Passive voice changes subject to __", a: "Object (receiver of action)" },
+                                { q: "Semicolon is used to separate __", a: "Independent clauses" }
+                            ]
+                        },
+                        {
+                            title: "Literature & Texts",
+                            notes: "Poetry, prose, drama, character analysis, themes, symbolism, narrative techniques, and literary devices.",
+                            questions: [
+                                { q: "Repetition of sounds at beginning of words", a: "Alliteration" },
+                                { q: "Exaggeration for emphasis", a: "Hyperbole" },
+                                { q: "Comparison using 'as' or 'like'", a: "Simile" }
+                            ]
+                        },
+                        {
+                            title: "Reading Comprehension",
+                            notes: "Understanding texts, identifying main ideas, inference, tone, author's purpose, and critical analysis.",
+                            questions: [
+                                { q: "Process of determining implied meanings", a: "Inference" },
+                                { q: "Author's attitude towards subject", a: "Tone" },
+                                { q: "Author's reason for writing", a: "Purpose" }
+                            ]
+                        },
+                        {
+                            title: "Writing Skills",
+                            notes: "Essay writing, letter writing, creative writing, persuasive writing, organization, coherence, and editing.",
+                            questions: [
+                                { q: "Essential parts of essay", a: "Introduction, body, conclusion" },
+                                { q: "Formal letter format includes __", a: "Address, date, greeting, body, closing" },
+                                { q: "Purpose of paragraph topic sentence", a: "States main idea of paragraph" }
+                            ]
+                        }
+                    ]
+                },
+                foodandnutrition: {
+                    name: "Food and Nutrition (BGCSE)",
+                    code: "BGCSE",
+                    icon: "fa-apple-alt",
+                    description: "Study food science, nutrition, and food preparation",
+                    objectives: [
+                        "Understand nutrition and balanced diet",
+                        "Study food groups and dietary needs",
+                        "Learn food preparation and safety",
+                        "Analyze food health and wellness"
+                    ],
+                    topics: [
+                        {
+                            title: "Nutrition & Nutrients",
+                            notes: "Carbohydrates, proteins, fats, vitamins, minerals, water, fiber. Functions, sources, deficiency diseases, and recommended daily intake.",
+                            questions: [
+                                { q: "Nutrients needed for energy", a: "Carbohydrates and fats" },
+                                { q: "Nutrient needed for growth and repair", a: "Protein" },
+                                { q: "Mineral needed for strong bones", a: "Calcium" }
+                            ]
+                        },
+                        {
+                            title: "Balanced Diet & Food Groups",
+                            notes: "Dietary guidelines, food pyramid, portion control, daily requirements, calories, balanced meals, and healthy eating patterns.",
+                            questions: [
+                                { q: "Food group that includes meat and beans", a: "Protein group" },
+                                { q: "Number of servings from grain group daily", a: "6-11 servings" },
+                                { q: "Importance of balanced diet", a: "Maintains health and prevents diseases" }
+                            ]
+                        },
+                        {
+                            title: "Food Safety & Hygiene",
+                            notes: "Food storage, preparation, contamination prevention, food poisoning, kitchen safety, sanitization, and food labeling.",
+                            questions: [
+                                { q: "Proper temperature for storing perishable food", a: "Below 4°C (40°F)" },
+                                { q: "Common cause of food poisoning", a: "Bacteria (e.g., Salmonella)" },
+                                { q: "Practice that prevents cross-contamination", a: "Using separate cutting boards" }
+                            ]
+                        },
+                        {
+                            title: "Special Diets & Health",
+                            notes: "Diabetes, obesity, allergies, vegetarianism, vegan diet, cultural diets, and nutritional needs in different life stages.",
+                            questions: [
+                                { q: "Diet for people with diabetes requires __", a: "Low sugar, controlled portions" },
+                                { q: "Vegetarians do not eat __", a: "Meat" },
+                                { q: "Nutrition needs are highest during __", a: "Childhood and adolescence" }
+                            ]
+                        }
+                    ]
+                },
+                designandtechnology: {
+                    name: "Design and Technology (BGCSE)",
+                    code: "BGCSE",
+                    icon: "fa-wrench",
+                    description: "Learn design principles, problem-solving, and technology",
+                    objectives: [
+                        "Understand design process and innovation",
+                        "Apply problem-solving techniques",
+                        "Study materials and manufacturing",
+                        "Develop practical and technical skills"
+                    ],
+                    topics: [
+                        {
+                            title: "Design Process",
+                            notes: "Identifying problems, research, brainstorming, sketching, prototyping, testing, evaluation, and iteration.",
+                            questions: [
+                                { q: "First step in design process", a: "Identify the problem" },
+                                { q: "Testing stage helps identify __", a: "Strengths and weaknesses" },
+                                { q: "Iterating means __", a: "Improving design based on feedback" }
+                            ]
+                        },
+                        {
+                            title: "Materials & Properties",
+                            notes: "Wood, metal, plastic, textile properties, strength, durability, cost, sustainability, and appropriate material selection.",
+                            questions: [
+                                { q: "Material property that resists breaking", a: "Strength" },
+                                { q: "Process of joining materials permanently", a: "Welding or adhesive bonding" },
+                                { q: "Sustainable material is __", a: "Environmentally friendly and renewable" }
+                            ]
+                        },
+                        {
+                            title: "Technology & Innovation",
+                            notes: "Digital tools, CAD (Computer-Aided Design), 3D printing, automation, robotics, and emerging technologies.",
+                            questions: [
+                                { q: "CAD stands for __", a: "Computer-Aided Design" },
+                                { q: "3D printing technology creates objects from __", a: "Digital models layer by layer" },
+                                { q: "Automation improves production by __", a: "Reducing labor and increasing efficiency" }
+                            ]
+                        }
+                    ]
+                },
+                homemanagement: {
+                    name: "Home Management (BGCSE)",
+                    code: "BGCSE",
+                    icon: "fa-home",
+                    description: "Study household management, family, and personal wellness",
+                    objectives: [
+                        "Develop practical home management skills",
+                        "Understand family relationships and child care",
+                        "Master budgeting and resource management",
+                        "Promote personal health and wellness"
+                    ],
+                    topics: [
+                        {
+                            title: "Family & Relationships",
+                            notes: "Family structures, roles, responsibilities, communication, conflict resolution, and healthy relationships.",
+                            questions: [
+                                { q: "Key to healthy family relationships", a: "Communication and respect" },
+                                { q: "Responsibility of parents", a: "Care, education, guidance of children" },
+                                { q: "Sibling relationships importance", a: "Support and cooperation" }
+                            ]
+                        },
+                        {
+                            title: "Budgeting & Finance",
+                            notes: "Income and expenses, budgeting, saving, debt management, financial planning, and consumer awareness.",
+                            questions: [
+                                { q: "First step in creating budget", a: "List income and expenses" },
+                                { q: "Importance of emergency savings", a: "Covers unexpected expenses" },
+                                { q: "Being consumer aware means __", a: "Making informed buying decisions" }
+                            ]
+                        },
+                        {
+                            title: "Household Management",
+                            notes: "Cleaning, organizing, laundry, maintenance, waste management, energy conservation, and time management.",
+                            questions: [
+                                { q: "Proper way to organize kitchen", a: "Group similar items, keep frequently used items accessible" },
+                                { q: "Method to reduce household waste", a: "Reduce, Reuse, Recycle" },
+                                { q: "Energy conservation saves __", a: "Money and environment" }
+                            ]
+                        },
+                        {
+                            title: "Child Care & Development",
+                            notes: "Child development stages, safety, nutrition, play, education, and developmental milestones.",
+                            questions: [
+                                { q: "Priority in child safety", a: "Supervision and safe environment" },
+                                { q: "Play is important for child because __", a: "Develops skills and creativity" },
+                                { q: "Child development includes physical, social, emotional, and __ growth", a: "Cognitive" }
+                            ]
+                        }
+                    ]
+                },
+                physicaleducation: {
+                    name: "Physical Education (BGCSE)",
+                    code: "BGCSE",
+                    icon: "fa-futbol",
+                    description: "Study fitness, sports, health, and physical activity",
+                    objectives: [
+                        "Develop physical fitness and athletic skills",
+                        "Understand health and wellness principles",
+                        "Learn sports rules and techniques",
+                        "Promote healthy lifestyle habits"
+                    ],
+                    topics: [
+                        {
+                            title: "Fitness & Exercise",
+                            notes: "Cardiovascular fitness, strength, flexibility, muscular endurance, warm-up, cool-down, and training methods.",
+                            questions: [
+                                { q: "Exercise improves cardiovascular fitness by __", a: "Strengthening heart and lungs" },
+                                { q: "Proper warm-up prevents __", a: "Injuries" },
+                                { q: "Frequency of exercise recommended", a: "150 minutes moderate activity per week" }
+                            ]
+                        },
+                        {
+                            title: "Sports & Games",
+                            notes: "Popular sports rules, techniques, strategy, teamwork, fair play, sportsmanship, and athletic development.",
+                            questions: [
+                                { q: "Importance of teamwork in sports", a: "Achieves common goal" },
+                                { q: "Fair play means __", a: "Following rules and respecting opponents" },
+                                { q: "Benefits of playing sports", a: "Physical fitness, discipline, social skills" }
+                            ]
+                        },
+                        {
+                            title: "Health & Wellness",
+                            notes: "Nutrition, sleep, stress management, mental health, disease prevention, substance abuse awareness, and personal hygiene.",
+                            questions: [
+                                { q: "Hours of sleep recommended for teenagers", a: "8-10 hours" },
+                                { q: "Stress management techniques", a: "Exercise, meditation, hobby" },
+                                { q: "Benefits of physical activity on mental health", a: "Reduces stress and improves mood" }
+                            ]
+                        }
+                    ]
+                },
+                art: {
+                    name: "Art (BGCSE)",
+                    code: "BGCSE",
+                    icon: "fa-palette",
+                    description: "Explore visual art, creativity, and artistic expression",
+                    objectives: [
+                        "Develop artistic skills and creativity",
+                        "Understand art history and movements",
+                        "Analyze visual artwork critically",
+                        "Create original artistic work"
+                    ],
+                    topics: [
+                        {
+                            title: "Art Elements & Principles",
+                            notes: "Line, shape, color, texture, form, space, composition, balance, contrast, emphasis, and harmony in art.",
+                            questions: [
+                                { q: "Element used to show distance in art", a: "Perspective and space" },
+                                { q: "Principle of design that creates visual interest", a: "Contrast" },
+                                { q: "Warm colors include __", a: "Red, orange, yellow" }
+                            ]
+                        },
+                        {
+                            title: "Art History & Movements",
+                            notes: "Renaissance, Impressionism, Cubism, African art, Modern art, and contemporary art movements.",
+                            questions: [
+                                { q: "Famous Renaissance artist", a: "Leonardo da Vinci, Michelangelo" },
+                                { q: "Impressionism focused on __", a: "Light and color" },
+                                { q: "African art often features __", a: "Masks, sculptures, patterns" }
+                            ]
+                        },
+                        {
+                            title: "Drawing & Painting Techniques",
+                            notes: "Sketching, shading, perspective, color mixing, brush techniques, still life, portraiture, and composition.",
+                            questions: [
+                                { q: "Shading technique creates __", a: "Depth and dimension" },
+                                { q: "Linear perspective shows __", a: "Distance and depth" },
+                                { q: "Color mixing primary colors creates __", a: "Secondary colors" }
+                            ]
+                        },
+                        {
+                            title: "Art Criticism & Analysis",
+                            notes: "Describing artwork, identifying techniques, analyzing meaning, artist intent, cultural context, and personal response.",
+                            questions: [
+                                { q: "First step in art criticism", a: "Describe what you see" },
+                                { q: "Analysis includes identifying __ and technique", a: "Subject matter" },
+                                { q: "Interpretation asks what does artwork __", a: "Mean or communicate" }
+                            ]
+                        }
+                    ]
+                },
+                geography: {
+                    name: "Geography (BGCSE)",
+                    code: "BGCSE",
+                    icon: "fa-map",
+                    description: "Study physical and human geography of Botswana and the world",
+                    objectives: [
+                        "Understand physical geography and Earth processes",
+                        "Study human geography and cultural patterns",
+                        "Analyze climate, vegetation, and ecosystems",
+                        "Learn about sustainable development and environmental issues"
+                    ],
+                    topics: [
+                        {
+                            title: "Physical Geography - Earth Processes",
+                            notes: "Plate tectonics, erosion, weathering, rock cycle, landforms, mountains, valleys, and geological structures.",
+                            questions: [
+                                { q: "Three main types of rocks", a: "Igneous, sedimentary, metamorphic" },
+                                { q: "Process that breaks rocks into smaller pieces", a: "Weathering" },
+                                { q: "Movement of soil and rocks downslope", a: "Erosion" }
+                            ]
+                        },
+                        {
+                            title: "Climate & Weather Systems",
+                            notes: "Climate types, precipitation, temperature, wind patterns, pressure systems, and extreme weather phenomena.",
+                            questions: [
+                                { q: "Average weather conditions of region", a: "Climate" },
+                                { q: "Tropical climate receives __ mm of rainfall annually", a: "Over 2000" },
+                                { q: "Arid/desert climate receives __ mm of rainfall annually", a: "Less than 250" }
+                            ]
+                        },
+                        {
+                            title: "Ecosystems & Biomes",
+                            notes: "Rainforest, savanna, desert, tundra, temperate forests. Biodiversity, food chains, and ecological balance.",
+                            questions: [
+                                { q: "Largest biome on Earth", a: "Taiga/boreal forest" },
+                                { q: "Biome with highest biodiversity", a: "Rainforest/tropical forest" },
+                                { q: "Kalahari is an example of __ biome", a: "Desert" }
+                            ]
+                        },
+                        {
+                            title: "Human Geography - Populations",
+                            notes: "Population growth, distribution, density, migration, urbanization, and demographic transitions.",
+                            questions: [
+                                { q: "Botswana's capital and largest city", a: "Gaborone" },
+                                { q: "Movement of people from rural to urban areas", a: "Urbanization" },
+                                { q: "Factors affecting population growth", a: "Birth rate, death rate, migration" }
+                            ]
+                        },
+                        {
+                            title: "Economic Geography",
+                            notes: "Agriculture, mining, industry, tourism, trade, economic development, and resource management.",
+                            questions: [
+                                { q: "Primary sector of economy involves __", a: "Extracting natural resources (mining, farming)" },
+                                { q: "Botswana's main economic sector", a: "Diamond mining" },
+                                { q: "Sustainable tourism benefits local communities by __", a: "Creating jobs and income" }
+                            ]
+                        },
+                        {
+                            title: "Environmental Issues & Sustainability",
+                            notes: "Climate change, deforestation, desertification, water scarcity, pollution, and conservation efforts.",
+                            questions: [
+                                { q: "Process where desert expands into fertile land", a: "Desertification" },
+                                { q: "Main cause of climate change", a: "Greenhouse gas emissions" },
+                                { q: "Renewable resource vs non-renewable", a: "Renewable: water, sunlight; Non-renewable: fossil fuels, minerals" }
+                            ]
+                        }
+                    ]
+                },
+                history: {
+                    name: "History (BGCSE)",
+                    code: "BGCSE",
+                    icon: "fa-scroll",
+                    description: "Explore Botswana, African, and world history",
+                    objectives: [
+                        "Understand Botswana's pre-colonial and colonial history",
+                        "Study independence and post-independence development",
+                        "Analyze major historical events and their impact",
+                        "Examine cause and effect in historical events"
+                    ],
+                    topics: [
+                        {
+                            title: "Pre-Colonial Botswana & Traditional Societies",
+                            notes: "San/Bushmen, Bantu migrations, Tswana kingdoms, Khoi pastoralists, traditional governance, and cultural practices.",
+                            questions: [
+                                { q: "Original inhabitants of Botswana", a: "San people (Bushmen)" },
+                                { q: "Language spoken by Tswana people", a: "Setswana" },
+                                { q: "Traditional Tswana leader was called __", a: "Kgosi (chief)" }
+                            ]
+                        },
+                        {
+                            title: "Colonial Period & European Influence",
+                            notes: "British colonization, Bechuanaland Protectorate, colonial administration, land dispossession, and resistance.",
+                            questions: [
+                                { q: "Botswana was formerly called __", a: "Bechuanaland Protectorate" },
+                                { q: "Year British established protectorate over Bechuanaland", a: "1885" },
+                                { q: "Purpose of colonial rule", a: "Control resources, trade, and territory" }
+                            ]
+                        },
+                        {
+                            title: "Independence & Nation Building (1966-1980s)",
+                            notes: "Independence movement, first president Seretse Khama, democratic transition, economic development, and nation-building.",
+                            questions: [
+                                { q: "Date of Botswana's independence", a: "September 30, 1966" },
+                                { q: "First President of independent Botswana", a: "Seretse Khama" },
+                                { q: "Botswana's independence was __", a: "Peaceful (no violent revolution)" }
+                            ]
+                        },
+                        {
+                            title: "Economic Development & Diamond Era",
+                            notes: "Discovery of diamonds, economic growth, diversification efforts, investment in education and infrastructure.",
+                            questions: [
+                                { q: "Major discovery that transformed Botswana's economy", a: "Diamonds (1967)" },
+                                { q: "First large diamond mine in Botswana", a: "Orapa" },
+                                { q: "Botswana's economic model is called __", a: "Controlled capitalism" }
+                            ]
+                        },
+                        {
+                            title: "Government & Democracy",
+                            notes: "Democratic system, parliamentary government, multi-party democracy, elections, rule of law, and constitution.",
+                            questions: [
+                                { q: "Botswana's government system", a: "Parliamentary democracy" },
+                                { q: "Number of terms a President can serve", a: "Two terms (10 years)" },
+                                { q: "Legislative branch of Botswana government", a: "National Assembly" }
+                            ]
+                        },
+                        {
+                            title: "Contemporary Botswana & Regional Context",
+                            notes: "Modern challenges (HIV/AIDS), regional integration (SADC), international relations, and future prospects.",
+                            questions: [
+                                { q: "Major health challenge in Botswana", a: "HIV/AIDS" },
+                                { q: "Regional organization Botswana belongs to", a: "SADC (Southern African Development Community)" },
+                                { q: "Botswana's relationship with South Africa and Zimbabwe", a: "Regional cooperation and trade" }
+                            ]
+                        }
+                    ]
+                }
+            }
+        };
+
+        function setCurriculum(curriculum) {
+            currentCurriculum = curriculum;
+            localStorage.setItem('selectedCurriculum', curriculum);
+            document.querySelectorAll('.curriculum-btn').forEach(btn => {
+                if (btn.getAttribute('data-curriculum') === curriculum) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+            showToast(`Switched to ${curriculum.toUpperCase()} curriculum`);
+            renderCourses();
+        }
+
+        function showCourseDetail(courseKey) {
+            selectedCourse = courseKey;
+            const courseData = coursesData[currentCurriculum][courseKey];
+            const html = `
+                <button class="back-btn" onclick="selectedCourse=null; renderCourses()"><i class="fas fa-arrow-left"></i> Back to Courses</button>
+                <div class="course-detail-header">
+                    <h1><i class="fas ${courseData.icon}"></i> ${courseData.name}</h1>
+                    <p>${courseData.description}</p>
+                </div>
+
+                <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+                    <button class="submit-btn" style="flex: 1; border-radius: 30px;" onclick="startTimedExam('${courseKey}')">
+                        <i class="fas fa-stopwatch"></i> Start Full Mock Exam (30 Mins)
+                    </button>
+                    <button class="enroll-btn" style="flex: 1; border-radius: 30px; text-align: center;" onclick="showToast('Course content downloaded for offline study')">
+                        <i class="fas fa-download"></i> Download Study Guide
+                    </button>
+                    <button class="enroll-btn" style="flex: 1; border-radius: 30px; text-align: center;" onclick="saveToLibrary('${courseData.name} Study Guide', 'notes')">
+                        <i class="fas fa-bookmark"></i> Save to My Cloud
+                    </button>
+                </div>
+                
+                <div class="objectives">
+                    <h3>📋 Learning Objectives</h3>
+                    <ul>
+                        ${courseData.objectives.map(obj => `<li>${obj}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div class="topics-container">
+                    <h3 style="color: #00e5ff; margin-bottom: 1rem;">📚 Course Topics & Content</h3>
+                    ${courseData.topics.map((topic, idx) => `
+                        <div class="topic-card">
+                            <div class="topic-header" onclick="toggleTopic(${idx})">
+                                <h4>${topic.title}</h4>
+                                <i class="fas fa-chevron-down" id="toggle-${idx}" style="transition: 0.3s;"></i>
+                            </div>
+                            <div class="topic-content" id="content-${idx}">
+                                <div class="topic-notes">
+                                    <h5>📖 Key Notes</h5>
+                                    <div class="notes-text">${topic.notes}</div>
+                                </div>
+                                <div class="topic-questions">
+                                    <h5>❓ Practice Questions</h5>
+                                    ${topic.questions.map((q, qIdx) => `
+                                        <div class="question-item">
+                                            <div class="question-text">Q${qIdx + 1}: ${q.q}</div>
+                                            <button class="answer-btn" onclick="toggleAnswer(${idx}-${qIdx})">Show Answer</button>
+                                            <div class="answer-text" id="answer-${idx}-${qIdx}"><strong>A:</strong> ${q.a}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            document.getElementById('mainContent').innerHTML = html;
+        }
+
+        function startTimedExam(courseKey) {
+            const course = coursesData[currentCurriculum][courseKey];
+            const questions = course.topics.flatMap(t => t.questions);
+            timeLeft = 30 * 60; // 30 minutes
+            
+            const overlay = document.getElementById('quizOverlay');
+            overlay.style.display = 'flex';
+            
+            renderQuizHeader(course.name);
+            renderQuizBody(questions);
+            
+            quizTimer = setInterval(() => {
+                timeLeft--;
+                const mins = Math.floor(timeLeft / 60);
+                const secs = timeLeft % 60;
+                document.getElementById('timer').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+                
+                if (timeLeft <= 0) {
+                    submitExam(questions);
+                }
+            }, 1000);
+        }
+
+        function renderQuizHeader(title) {
+            const content = document.getElementById('quizContent');
+            content.innerHTML = `
+                <div class="quiz-header">
+                    <div>
+                        <h2 style="color: #00e5ff;">${title} Mock Exam</h2>
+                        <p>Answer all questions. The system will mark your work automatically.</p>
+                    </div>
+                    <div class="timer-box" id="timer">30:00</div>
+                </div>
+                <div id="questionList"></div>
+                <button class="submit-btn" style="margin-top: 2rem;" onclick="submitExam()">Submit Examination</button>
+            `;
+        }
+
+        function renderQuizBody(questions) {
+            const list = document.getElementById('questionList');
+            list.innerHTML = questions.map((q, idx) => `
+                <div class="quiz-question-card" id="q-card-${idx}">
+                    <h4>Question ${idx + 1}</h4>
+                    <p style="font-size: 1.1rem; margin: 1rem 0;">${q.q}</p>
+                    <input type="text" class="answer-input" id="ans-${idx}" placeholder="Type your answer here...">
+                    <div id="feedback-${idx}"></div>
+                </div>
+            `).join('');
+        }
+
+        function submitExam() {
+            clearInterval(quizTimer);
+            const course = coursesData[currentCurriculum][selectedCourse];
+            const questions = course.topics.flatMap(t => t.questions);
+            let score = 0;
+
+            questions.forEach((q, idx) => {
+                const studentAns = document.getElementById(`ans-${idx}`).value.trim().toLowerCase();
+                const correctAns = q.a.toLowerCase();
+                const card = document.getElementById(`q-card-${idx}`);
+                const feedback = document.getElementById(`feedback-${idx}`);
+
+                // Simple marking logic - for demo it checks if correct answer string is contained
+                if (studentAns !== "" && (correctAns.includes(studentAns) || studentAns.includes(correctAns))) {
+                    score++;
+                    card.classList.add('feedback-correct');
+                    feedback.innerHTML = `<p class="correct-ans-display"><i class="fas fa-check"></i> Correct!</p>`;
+                } else {
+                    card.classList.add('feedback-wrong');
+                    feedback.innerHTML = `
+                        <p style="color: #ff4655;"><i class="fas fa-times"></i> Incorrect</p>
+                        <p class="correct-ans-display">Correct Answer: ${q.a}</p>
+                    `;
+                }
+                document.getElementById(`ans-${idx}`).disabled = true;
+            });
+
+            const percentage = Math.round((score / questions.length) * 100);
+            const quizContent = document.getElementById('quizContent');
+            
+            const resultHtml = `
+                <div class="score-card">
+                    <h2>Examination Results</h2>
+                    <div class="score-val">${percentage}%</div>
+                    <p>You scored ${score} out of ${questions.length} questions.</p>
+                    <button class="enroll-btn" style="margin-top: 2rem;" onclick="document.getElementById('quizOverlay').style.display='none'">Review Answers or Exit</button>
+                </div>
+            `;
+            quizContent.insertAdjacentHTML('afterbegin', resultHtml);
+        }
+
+        function toggleTopic(idx) {
+            const content = document.getElementById(`content-${idx}`);
+            const toggle = document.getElementById(`toggle-${idx}`);
+            content.classList.toggle('show');
+            toggle.style.transform = content.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+
+        function toggleAnswer(id) {
+            document.getElementById(`answer-${id}`).classList.toggle('show');
+        }
+
+        function saveToLibrary(title, type) {
+            const currentUser = JSON.parse(localStorage.getItem('botswanaminds_currentUser') || localStorage.getItem('solace_currentUser'));
+            if (!currentUser) {
+                showToast('Please login to save documents to your library', true);
+                return;
+            }
+
+            const newDoc = {
+                id: Date.now(),
+                title: title,
+                type: type === 'paper' ? 'paper' : 'notes', // Ensure consistency with index.html
+                owner: currentUser.username,
+                date: new Date().toLocaleDateString()
+            };
+
+            let docs = JSON.parse(localStorage.getItem('botswanaminds_user_docs') || '[]');
+            if (docs.some(d => d.title === title && d.owner === currentUser.username)) {
+                showToast('This document is already in your library');
+                return;
+            }
+            
+            docs.push(newDoc);
+            localStorage.setItem('botswanaminds_user_docs', JSON.stringify(docs));
+            showToast('Saved to your library! Check your dashboard.');
+        }
+
+        function showToast(message, isError = false) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.style.borderLeftColor = isError ? '#ff4655' : '#00e5ff';
+            toast.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-check-circle'}" style="margin-right: 10px;"></i>${message}`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        function renderCourses() {
+            if (selectedCourse) {
+                showCourseDetail(selectedCourse);
+                return;
+            }
+
+            const currData = coursesData[currentCurriculum];
+            const courses = Object.keys(currData).map(key => ({
+                key,
+                ...currData[key]
+            }));
+
+            let html = `
+                <div class="page-header">
+                    <div class="curriculum-badge">🎓 ${currentCurriculum.toUpperCase()} Curriculum</div>
+                    <h1>📚 ${currentCurriculum.toUpperCase()} Courses</h1>
+                    <p>Access comprehensive courses with topics, notes, and practice questions</p>
+                </div>
+                <div class="courses-grid">
+                    ${courses.map(c => `
+                        <div class="course-card" onclick="showCourseDetail('${c.key}')">
+                            <div class="course-icon"><i class="fas ${c.icon}"></i></div>
+                            <h3>${c.name}</h3>
+                            <p>${c.description}</p>
+                            <div class="course-meta">
+                                <span><i class="fas fa-book-open"></i> ${c.topics.length} Topics</span>
+                                <span><i class="fas fa-clipboard-list"></i> ${c.topics.reduce((sum, t) => sum + t.questions.length, 0)} Q&A</span>
+                            </div>
+                            <button class="enroll-btn" onclick="event.stopPropagation(); showCourseDetail('${c.key}')">View Course →</button>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            document.getElementById('mainContent').innerHTML = html;
+        }
+
+        // Initialize
+        document.querySelectorAll('.curriculum-btn').forEach(btn => {
+            if (btn.getAttribute('data-curriculum') === currentCurriculum) btn.classList.add('active');
+        });
+        const savedUser = localStorage.getItem('botswanaminds_currentUser') || localStorage.getItem('solace_currentUser');
+        if (savedUser) {
+            const userObj = JSON.parse(savedUser);
+            document.getElementById('userNameDisplay').innerHTML = `<i class="fas fa-user-circle"></i> ${userObj.fullname || userObj.username} <small style="font-size:0.6rem; opacity:0.7">(${userObj.role})</small>`;
+        }
+        renderCourses();
+    </script>
+</body>
+</html>

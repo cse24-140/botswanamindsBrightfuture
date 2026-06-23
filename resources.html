@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - Botswana Minds, Bright Future | IGCSE & BGCSE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0a0e1a 0%, #0f1622 50%, #1a0f2e 100%); color: #ffffff; min-height: 100vh; }
+        .navbar { position: fixed; top: 0; left: 0; right: 0; background: rgba(10, 14, 26, 0.95); backdrop-filter: blur(15px); padding: 1rem 5%; z-index: 1000; border-bottom: 1px solid rgba(0, 229, 255, 0.2); }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .logo { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #00e5ff, #0077ff); border-radius: 50%; box-shadow: 0 0 15px rgba(0, 229, 255, 0.4); display: flex; align-items: center; justify-content: center; }
+        .logo-icon i { font-size: 1.5rem; color: #fff; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .logo:hover .logo-icon i { animation: spin 2s linear infinite; }
+        .logo h1 { font-size: 1.1rem; font-weight: 700; background: linear-gradient(135deg, #00e5ff, #0077ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .logo p { font-size: 0.7rem; color: #ffffff; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: #b8c7e7; text-decoration: none; transition: 0.3s; font-weight: 500; position: relative; }
+        .nav-links a:hover, .nav-links a.active { color: #00e5ff; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 50%; transform: translateX(-50%); background: #00e5ff; transition: width 0.3s ease; }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .curriculum-switcher { display: flex; gap: 0.5rem; background: rgba(18, 25, 45, 0.8); border-radius: 40px; padding: 0.2rem; border: 1px solid rgba(0, 229, 255, 0.3); }
+        .curriculum-btn { padding: 0.4rem 1.2rem; border-radius: 40px; border: none; background: transparent; color: #b8c7e7; font-weight: 600; cursor: pointer; transition: 0.3s; font-size: 0.8rem; }
+        .curriculum-btn.active { background: linear-gradient(135deg, #00e5ff, #0077ff); color: white; }
+        .user-badge { display: flex; align-items: center; gap: 0.8rem; background: rgba(0, 229, 255, 0.1); padding: 0.4rem 1rem; border-radius: 40px; cursor: pointer; }
+        .user-badge i { color: #00e5ff; }
+        .main-content { padding-top: 90px; max-width: 1400px; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; padding-bottom: 3rem; }
+        .page-header { text-align: center; margin-bottom: 3rem; }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .page-header p { color: #a0b4d0; max-width: 600px; margin: 0 auto; }
+        .curriculum-badge { display: inline-block; background: rgba(0, 229, 255, 0.15); padding: 0.3rem 1rem; border-radius: 30px; font-size: 0.8rem; color: #00e5ff; margin-bottom: 1rem; }
+        .resources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+        .resource-card { background: rgba(18, 25, 45, 0.7); backdrop-filter: blur(10px); border-radius: 20px; padding: 1.5rem; border: 1px solid rgba(0, 229, 255, 0.15); transition: 0.3s; }
+        .resource-card:hover { transform: translateY(-5px); border-color: #00e5ff; }
+        .resource-icon { width: 60px; height: 60px; background: linear-gradient(135deg, #00e5ff20, #0077ff20); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+        .resource-icon i { font-size: 1.8rem; color: #00e5ff; }
+        .download-link { background: rgba(0, 229, 255, 0.1); border: 1px solid rgba(0, 229, 255, 0.3); padding: 0.6rem 1.2rem; border-radius: 30px; color: #00e5ff; cursor: pointer; display: inline-block; transition: 0.3s; font-size: 0.85rem; text-decoration: none; }
+        .download-link:hover { background: linear-gradient(135deg, #00e5ff, #0077ff); color: white; }
+        .save-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 0.6rem 1.2rem; border-radius: 30px; color: #b8c7e7; cursor: pointer; display: inline-block; transition: 0.3s; font-size: 0.85rem; margin-left: 0.5rem; }
+        .save-btn:hover { background: rgba(0, 229, 255, 0.1); border-color: #00e5ff; color: #00e5ff; }
+        .resource-tabs { display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap; }
+        .tab-btn { background: rgba(18, 25, 45, 0.8); border: 1px solid rgba(0, 229, 255, 0.2); padding: 0.6rem 1.5rem; border-radius: 40px; color: #b8c7e7; cursor: pointer; transition: 0.3s; }
+        .tab-btn.active, .tab-btn:hover { background: linear-gradient(135deg, #00e5ff, #0077ff); color: white; }
+        .search-resource { max-width: 500px; margin: 0 auto 2rem auto; display: flex; background: rgba(18, 25, 45, 0.8); border-radius: 50px; border: 1px solid rgba(0, 229, 255, 0.2); overflow: hidden; }
+        .search-resource input { flex: 1; background: none; border: none; padding: 1rem 1.5rem; color: white; outline: none; }
+        .search-resource button { background: linear-gradient(135deg, #00e5ff, #0077ff); border: none; padding: 0 1.8rem; color: white; cursor: pointer; }
+        .footer { text-align: center; padding: 2rem; color: #6c86a3; font-size: 0.8rem; border-top: 1px solid rgba(0, 229, 255, 0.1); margin-top: 2rem; }
+        .toast { position: fixed; bottom: 30px; right: 30px; background: #1a2a3a; padding: 1rem 1.5rem; border-radius: 12px; border-left: 4px solid #00e5ff; z-index: 1000; animation: slideIn 0.3s ease; }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @media (max-width: 900px) { .nav-links { display: none; } .resources-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-lightbulb"></i></div>
+                <div><h1>Botswana Minds, Bright Future</h1><p>Smart Learning for BGCSE & IGCSE</p></div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="courses.html">Courses</a>
+                <a href="resources.html" class="active">Resources</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="curriculum-switcher">
+                <button class="curriculum-btn" data-curriculum="igcse" onclick="setCurriculum('igcse')">IGCSE</button>
+                <button class="curriculum-btn" data-curriculum="bgcse" onclick="setCurriculum('bgcse')">BGCSE</button>
+            </div>
+            <div class="user-badge" onclick="showAuthModal()">
+                <i class="fas fa-user-circle"></i> <span id="userNameDisplay">Account</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content" id="mainContent"></div>
+    <div class="footer"><p>© 2024 Botswana Minds, Bright Future. Empowering IGCSE & BGCSE Students Worldwide.</p></div>
+
+    <script>
+        let currentCurriculum = localStorage.getItem('selectedCurriculum') || 'igcse';
+        let currentFilter = 'all';
+        let searchTerm = '';
+
+        const curriculumData = {
+            igcse: {
+                name: "IGCSE",
+                resources: [
+                    { id: 1, title: "Mathematics Past Papers (2019-2023)", type: "pastpapers", icon: "fa-file-pdf", subject: "Mathematics", downloads: 12500, description: "Complete IGCSE Mathematics past papers with marking schemes." },
+                    { id: 2, title: "Physics Formula Sheet", type: "notes", icon: "fa-file-alt", subject: "Physics", downloads: 8900, description: "Quick reference guide for all IGCSE physics formulas." },
+                    { id: 3, title: "Chemistry Flashcards Bundle", type: "flashcards", icon: "fa-layer-group", subject: "Chemistry", downloads: 6700, description: "500+ digital flashcards for IGCSE Chemistry." },
+                    { id: 4, title: "Biology Video Crash Course", type: "videos", icon: "fa-video", subject: "Biology", downloads: 4300, description: "Complete IGCSE Biology syllabus in 2-hour video." },
+                    { id: 5, title: "English Literature & Language Guide", type: "notes", icon: "fa-book-open", subject: "English", downloads: 3200, description: "Comprehensive IGCSE English notes with literature analysis." }
+                ]
+            },
+            bgcse: {
+                name: "BGCSE",
+                resources: [
+                    { id: 1, title: "BGCSE Mathematics Past Papers", type: "pastpapers", icon: "fa-file-pdf", subject: "Mathematics", downloads: 8900, description: "Complete BGCSE Mathematics past papers with answers." },
+                    { id: 2, title: "BGCSE Physics Revision Notes", type: "notes", icon: "fa-file-alt", subject: "Physics", downloads: 6200, description: "Comprehensive BGCSE Physics notes and formulas." },
+                    { id: 3, title: "BGCSE Chemistry Flashcards", type: "flashcards", icon: "fa-layer-group", subject: "Chemistry", downloads: 4800, description: "400+ flashcards for BGCSE Chemistry." },
+                    { id: 4, title: "BGCSE Biology Study Guide", type: "notes", icon: "fa-file-alt", subject: "Biology", downloads: 5600, description: "Complete BGCSE Biology revision guide." },
+                    { id: 5, title: "Setswana Language Guide", type: "notes", icon: "fa-book", subject: "Setswana", downloads: 4200, description: "Complete BGCSE Setswana language learning guide with grammar and vocabulary." },
+                    { id: 6, title: "Setswana Vocabulary Flashcards", type: "flashcards", icon: "fa-layer-group", subject: "Setswana", downloads: 3800, description: "600+ Setswana vocabulary flashcards for all levels." },
+                    { id: 7, title: "Setswana Culture & Traditions", type: "notes", icon: "fa-globe", subject: "Setswana", downloads: 2900, description: "Understanding Botswana culture, traditions, and customs for BGCSE." },
+                    { id: 8, title: "Setswana Audio Pronunciation Guide", type: "videos", icon: "fa-volume-up", subject: "Setswana", downloads: 2100, description: "Audio files with correct pronunciation of Setswana words and phrases." },
+                    { id: 9, title: "Setswana Practice Exercises", type: "notes", icon: "fa-pencil-alt", subject: "Setswana", downloads: 3500, description: "Comprehensive practice exercises with answers for BGCSE Setswana." },
+                    { id: 10, title: "Setswana Past Papers", type: "pastpapers", icon: "fa-file-pdf", subject: "Setswana", downloads: 2600, description: "BGCSE Setswana past papers (2019-2023) with marking schemes." },
+                    { id: 11, title: "BGCSE Social Studies Guide", type: "notes", icon: "fa-globe", subject: "Social Studies", downloads: 3900, description: "Comprehensive guide to Botswana's geography, history, government, and society." },
+                    { id: 12, title: "Social Studies Practice Questions", type: "notes", icon: "fa-pencil-alt", subject: "Social Studies", downloads: 2700, description: "Practice questions on BGCSE Social Studies topics with answers." },
+                    { id: 13, title: "BGCSE Religious Education Notes", type: "notes", icon: "fa-om", subject: "Religious Education", downloads: 3100, description: "Notes on Christianity, Islam, Buddhism, and ethics for BGCSE." },
+                    { id: 14, title: "BGCSE English Language Guide", type: "notes", icon: "fa-book-open", subject: "English", downloads: 4500, description: "Complete BGCSE English grammar, literature, and writing guide." },
+                    { id: 15, title: "BGCSE English Past Papers", type: "pastpapers", icon: "fa-file-pdf", subject: "English", downloads: 3400, description: "BGCSE English past papers with model answers." },
+                    { id: 16, title: "Food and Nutrition Workbook", type: "notes", icon: "fa-apple-alt", subject: "Food and Nutrition", downloads: 2900, description: "Practical BGCSE Food and Nutrition study guide and recipes." },
+                    { id: 17, title: "Nutrition Flashcards", type: "flashcards", icon: "fa-layer-group", subject: "Food and Nutrition", downloads: 2100, description: "Flashcards covering nutrients, food groups, and dietary guidelines." },
+                    { id: 18, title: "Design and Technology Projects", type: "notes", icon: "fa-wrench", subject: "Design and Technology", downloads: 2600, description: "Project ideas and design process guide for BGCSE." },
+                    { id: 19, title: "Home Management Study Guide", type: "notes", icon: "fa-home", subject: "Home Management", downloads: 3200, description: "Complete guide to budgeting, child care, and household management." },
+                    { id: 20, title: "Physical Education Training Guide", type: "notes", icon: "fa-futbol", subject: "Physical Education", downloads: 2800, description: "Fitness training plans and sports rules for BGCSE PE." },
+                    { id: 21, title: "Sports Rules Reference", type: "notes", icon: "fa-futbol", subject: "Physical Education", downloads: 1950, description: "Rules and techniques for popular sports in BGCSE curriculum." },
+                    { id: 22, title: "Art History Study Guide", type: "notes", icon: "fa-palette", subject: "Art", downloads: 2700, description: "Comprehensive art history and movements guide for BGCSE." },
+                    { id: 23, title: "Art Techniques & Drawing Tutorials", type: "videos", icon: "fa-video", subject: "Art", downloads: 2400, description: "Video tutorials on drawing, painting, and art techniques." },
+                    { id: 24, title: "BGCSE Geography Study Guide", type: "notes", icon: "fa-map", subject: "Geography", downloads: 4100, description: "Complete guide to physical and human geography with Botswana case studies." },
+                    { id: 25, title: "Geography Past Papers", type: "pastpapers", icon: "fa-file-pdf", subject: "Geography", downloads: 3200, description: "BGCSE Geography past papers (2019-2023) with solutions." },
+                    { id: 26, title: "Climate & Ecosystems Guide", type: "notes", icon: "fa-tree", subject: "Geography", downloads: 2800, description: "Detailed study of climate types, weather systems, and biomes." },
+                    { id: 27, title: "Environmental Issues & Sustainability", type: "notes", icon: "fa-leaf", subject: "Geography", downloads: 2500, description: "Guide to climate change, desertification, and conservation." },
+                    { id: 28, title: "BGCSE History Study Guide", type: "notes", icon: "fa-scroll", subject: "History", downloads: 4300, description: "Complete Botswana history from pre-colonial to contemporary period." },
+                    { id: 29, title: "History Past Papers", type: "pastpapers", icon: "fa-file-pdf", subject: "History", downloads: 3500, description: "BGCSE History past papers with model answers and explanations." },
+                    { id: 30, title: "Pre-Colonial & Colonial Botswana", type: "notes", icon: "fa-book", subject: "History", downloads: 2900, description: "San, Tswana kingdoms, Bechuanaland Protectorate, and British rule." },
+                    { id: 31, title: "Independence & Nation Building", type: "notes", icon: "fa-flag", subject: "History", downloads: 2700, description: "Botswana's independence journey and post-colonial development." },
+                    { id: 32, title: "Seretse Khama & Early Leaders", type: "notes", icon: "fa-user-tie", subject: "History", downloads: 2400, description: "Biography of Botswana's founding president and key historical figures." }
+                ]
+            }
+        };
+
+        function setCurriculum(curriculum) {
+            currentCurriculum = curriculum;
+            localStorage.setItem('selectedCurriculum', curriculum);
+            document.querySelectorAll('.curriculum-btn').forEach(btn => {
+                if (btn.getAttribute('data-curriculum') === curriculum) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+            showToast(`Switched to ${curriculum.toUpperCase()} curriculum`);
+            renderResources();
+        }
+
+        function setFilter(type) {
+            currentFilter = type;
+            renderResources();
+        }
+
+        function searchResource() {
+            const input = document.getElementById('searchInput');
+            searchTerm = input ? input.value.toLowerCase() : '';
+            renderResources();
+        }
+
+        function showToast(message, isError = false) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.style.borderLeftColor = isError ? '#ff4655' : '#00e5ff';
+            toast.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-check-circle'}" style="margin-right: 10px;"></i>${message}`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        function showAuthModal() {
+            const user = localStorage.getItem('botswanaminds_currentUser') || localStorage.getItem('solace_currentUser');
+            if (user) { 
+                if (confirm('Logout?')) {
+                    localStorage.removeItem('botswanaminds_currentUser');
+                    localStorage.removeItem('solace_currentUser');
+                    document.getElementById('userNameDisplay').innerText = 'Account'; 
+                    showToast('Logged out');
+                }
+                return;
+            }
+            const action = prompt('Enter 1 to Login, 2 to Create Account');
+            if (action === '1') {
+                const username = prompt('Username:');
+                const password = prompt('Password:');
+                const users = JSON.parse(localStorage.getItem('solace_users') || '[]');
+                const user = users.find(u => u.username === username && u.password === password);
+                if (user) {
+                    const session = { username: user.username, fullname: user.fullname, role: user.role || 'student' };
+                    localStorage.setItem('botswanaminds_currentUser', JSON.stringify(session));
+                    localStorage.setItem('solace_currentUser', JSON.stringify(session));
+                    document.getElementById('userNameDisplay').innerText = user.fullname || user.username;
+                    showToast(`Welcome back!`);
+                } else showToast('Invalid credentials', true);
+            } else if (action === '2') {
+                const fullname = prompt('Full Name:');
+                const username = prompt('Username:');
+                const email = prompt('Email:');
+                const password = prompt('Password (min 6 chars):');
+                const roleChoice = prompt('Register as: 1 for Student, 2 for Tutor');
+                const role = roleChoice === '2' ? 'tutor' : 'student';
+                if (fullname && username && email && password && password.length >= 6) {
+                    const users = JSON.parse(localStorage.getItem('solace_users') || '[]');
+                    if (users.some(u => u.username === username)) { showToast('Username taken', true); return; }
+                    users.push({ fullname, username, email, password, role });
+                    localStorage.setItem('solace_users', JSON.stringify(users));
+                    localStorage.setItem('botswanaminds_users', JSON.stringify(users));
+                    localStorage.setItem('solace_currentUser', JSON.stringify({ username, fullname, role }));
+                    localStorage.setItem('botswanaminds_currentUser', JSON.stringify({ username, fullname, role }));
+                    document.getElementById('userNameDisplay').innerText = fullname;
+                    showToast(`Welcome ${fullname}! Registered as ${role}.`);
+                } else showToast('Invalid input', true);
+            }
+        }
+
+        function downloadResource(title) {
+            showToast(`Downloading: ${title} (${currentCurriculum.toUpperCase()})`);
+        }
+
+        function saveToLibrary(title, type) {
+            const currentUser = JSON.parse(localStorage.getItem('botswanaminds_currentUser') || localStorage.getItem('solace_currentUser'));
+            if (!currentUser) {
+                showToast('Please login to save documents to your library', true);
+                return;
+            }
+
+            const newDoc = {
+                id: Date.now(),
+                title: title,
+                type: (type === 'pastpapers' || type === 'paper') ? 'paper' : 'notes',
+                owner: currentUser.username,
+                date: new Date().toLocaleDateString()
+            };
+
+            let docs = JSON.parse(localStorage.getItem('botswanaminds_user_docs') || '[]');
+            // Check if already saved
+            if (docs.some(d => d.title === title && d.owner === currentUser.username)) {
+                showToast('This document is already in your library');
+                return;
+            }
+            
+            docs.push(newDoc);
+            localStorage.setItem('botswanaminds_user_docs', JSON.stringify(docs));
+            showToast('Saved to your library! Check your dashboard.');
+        }
+
+        function renderResources() {
+            const data = curriculumData[currentCurriculum];
+            let filtered = currentFilter === 'all' ? data.resources : data.resources.filter(r => r.type === currentFilter);
+            if (searchTerm) {
+                filtered = filtered.filter(r => r.title.toLowerCase().includes(searchTerm) || r.subject.toLowerCase().includes(searchTerm));
+            }
+            document.getElementById('mainContent').innerHTML = `
+                <div class="page-header">
+                    <div class="curriculum-badge">📖 ${currentCurriculum.toUpperCase()} Resources</div>
+                    <h1>Free ${currentCurriculum.toUpperCase()} Learning Resources</h1>
+                    <p>Access past papers, revision guides, flashcards, and more for ${currentCurriculum.toUpperCase()}</p>
+                </div>
+                <div class="search-resource">
+                    <input type="text" id="searchInput" placeholder="Search ${currentCurriculum.toUpperCase()} resources..." onkeyup="if(event.key==='Enter') searchResource()">
+                    <button onclick="searchResource()"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="resource-tabs">
+                    <button class="tab-btn ${currentFilter === 'all' ? 'active' : ''}" onclick="setFilter('all')">All</button>
+                    <button class="tab-btn ${currentFilter === 'pastpapers' ? 'active' : ''}" onclick="setFilter('pastpapers')">Past Papers</button>
+                    <button class="tab-btn ${currentFilter === 'notes' ? 'active' : ''}" onclick="setFilter('notes')">Revision Notes</button>
+                    <button class="tab-btn ${currentFilter === 'flashcards' ? 'active' : ''}" onclick="setFilter('flashcards')">Flashcards</button>
+                    <button class="tab-btn ${currentFilter === 'videos' ? 'active' : ''}" onclick="setFilter('videos')">Video Lessons</button>
+                </div>
+                <div class="resources-grid">
+                    ${filtered.map(r => `
+                        <div class="resource-card">
+                            <div class="resource-icon"><i class="fas ${r.icon}"></i></div>
+                            <h3>${r.title}</h3>
+                            <p>${r.description}</p>
+                            <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                <span class="download-link" onclick="downloadResource('${r.title}')"><i class="fas fa-download"></i> Download</span>
+                                <button class="save-btn" onclick="saveToLibrary('${r.title}', '${r.type}')"><i class="fas fa-bookmark"></i> Save</button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        document.querySelectorAll('.curriculum-btn').forEach(btn => {
+            if (btn.getAttribute('data-curriculum') === currentCurriculum) btn.classList.add('active');
+        });
+        const savedUser = localStorage.getItem('botswanaminds_currentUser') || localStorage.getItem('solace_currentUser');
+        if (savedUser) {
+            const userObj = JSON.parse(savedUser);
+            document.getElementById('userNameDisplay').innerHTML = `<i class="fas fa-user-circle"></i> ${userObj.fullname || userObj.username} <small style="font-size:0.6rem; opacity:0.7">(${userObj.role})</small>`;
+        }
+        renderResources();
+    </script>
+</body>
+</html>
